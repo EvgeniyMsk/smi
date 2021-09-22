@@ -1,24 +1,19 @@
 package ou.miniservice;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ou.miniservice.models.Auto;
-import ou.miniservice.models.User;
-import ou.miniservice.service.UserService;
+import ou.miniservice.models.Organization;
+import ou.miniservice.models.Person;
+import ou.miniservice.service.OrganizationService;
 
 public class ServingWebContentApplication {
 
     public static void main(String[] args) {
-        UserService userService = new UserService();
-        User user = new User("Masha",26);
-        userService.saveUser(user);
-        Auto ferrari = new Auto("Ferrari", "red");
-        ferrari.setUser(user);
-        user.addAuto(ferrari);
-        Auto ford = new Auto("Ford", "black");
-        ford.setUser(user);
-        user.addAuto(ford);
-        userService.updateUser(user);
+        OrganizationService organizationService = new OrganizationService();
+        Organization organization = new Organization("Организация1");
+        Organization organization1 = new Organization("Организация2");
+        Organization organization2 = new Organization("Организация3");
+        Person person = new Person("Иван", "1234 567890", organization);
+        organization2.addPerson(person);
+        organizationService.saveOrganization(organization2);
     }
 
 }
