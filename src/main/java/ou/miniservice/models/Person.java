@@ -16,10 +16,15 @@ public class Person {
     private String passport;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organizationId")
+    @JoinColumn(name = "organizationid")
     private Organization organization;
 
     public Person() {
+    }
+
+    public Person(String name, String passport) {
+        this.name = name;
+        this.passport = passport;
     }
 
     public Person(String name, String passport, Organization organization) {
@@ -44,14 +49,6 @@ public class Person {
         this.name = name;
     }
 
-    public String getPassport() {
-        return passport;
-    }
-
-    public void setPassport(String passport) {
-        this.passport = passport;
-    }
-
     public Organization getOrganization() {
         return organization;
     }
@@ -65,8 +62,7 @@ public class Person {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", passport='" + passport + '\'' +
-                ", organization='" + organization + '\'' +
+                ", organization=" + organization.getName() +
                 '}';
     }
 }

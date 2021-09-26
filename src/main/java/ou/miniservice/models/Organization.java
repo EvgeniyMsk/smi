@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "miniservice.organization")
+@Table(name = "organization")
 public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,15 +15,16 @@ public class Organization {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Person> personList;
 
     public Organization() {
+        personList = new ArrayList<>();
     }
 
     public Organization(String name) {
         this.name = name;
-        personList = new ArrayList<>();
+        this.personList = new ArrayList<>();
     }
 
     public int getId() {
@@ -51,6 +52,7 @@ public class Organization {
     }
 
     public void addPerson(Person person) {
+        person.setOrganization(this);
         personList.add(person);
     }
 

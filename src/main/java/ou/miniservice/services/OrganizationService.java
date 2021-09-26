@@ -1,39 +1,41 @@
-package ou.miniservice.service;
+package ou.miniservice.services;
 
 
-import org.mariadb.jdbc.internal.util.exceptions.MariaDbSqlException;
 import ou.miniservice.models.Organization;
-import ou.miniservice.models.Person;
+import ou.miniservice.repositories.OrganizationRepository;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 public class OrganizationService {
 
-    private OrganizationDao organizationDao = new OrganizationDao();
+    private OrganizationRepository organizationRepository = new OrganizationRepository();
 
     public OrganizationService() {
     }
 
     public Organization findOrganization(int id) {
-        return organizationDao.findById(id);
+        return organizationRepository.findById(id);
     }
 
     public void saveOrganization(Organization organization) {
         try {
-            organizationDao.save(organization);
+            organizationRepository.save(organization);
         } catch (Exception e)
         {
             System.out.println("Ошибка добавления");
         }
     }
 
+    public List<Organization> findAll() {
+        return organizationRepository.findAll();
+    }
+
     public void deleteOrganization(Organization organization) {
-        organizationDao.delete(organization);
+        organizationRepository.delete(organization);
     }
 
     public void updateOrganization(Organization organization) {
-        organizationDao.update(organization);
+        organizationRepository.update(organization);
     }
 
 }

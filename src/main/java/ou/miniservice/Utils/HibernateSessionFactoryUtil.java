@@ -1,4 +1,4 @@
-package ou.miniservice.service;
+package ou.miniservice.Utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
